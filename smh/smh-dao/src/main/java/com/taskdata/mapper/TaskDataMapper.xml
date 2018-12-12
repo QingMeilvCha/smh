@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taskdata.mapper.TaskDataMapper">
+<!-- Begin Base Config -->
+	<sql id="fields" ><!-- ALl Fields -->
+		record_id, data_id, point_number, control_point, elevation, pre_distance, post_distance, mark
+	</sql>
+
+	<sql id="values">
+		#{recordId},#{dataId},#{pointNumber},#{controlPoint},#{elevation},#{preDistance},#{postDistance},#{mark}
+	</sql>
+
+	<sql id="foreachObj">
+		#{obj.recordId},#{obj.dataId},#{obj.pointNumber},#{obj.controlPoint},#{obj.elevation},#{obj.preDistance},#{obj.postDistance},#{obj.mark}
+	</sql>
+
+	<sql id="sets"><!-- Set Fields -->
+		<trim  suffixOverrides="," >
+			<if test="recordId != null">record_id = #{recordId},</if>
+			<if test="dataId != null">data_id = #{dataId},</if>
+			<if test="pointNumber != null">point_number = #{pointNumber},</if>
+			<if test="controlPoint != null">control_point = #{controlPoint},</if>
+			<if test="elevation != null">elevation = #{elevation},</if>
+			<if test="preDistance != null">pre_distance = #{preDistance},</if>
+			<if test="postDistance != null">post_distance = #{postDistance},</if>
+			<if test="mark != null">mark = #{mark},</if>
+		</trim>
+	</sql>
+
+	<!-- SQL查询条件明确，禁止conditions(便于索引) -->
+	<sql id="conditions"><!-- Search Condition -->
+		<trim prefix="where" prefixOverrides="and |or">
+	        <if test="recordId != null"> and record_id = #{recordId}</if>
+			<if test="dataId != null"> and data_id = #{dataId}</if>
+			<if test="pointNumber != null"> and point_number = #{pointNumber}</if>
+			<if test="controlPoint != null"> and control_point = #{controlPoint}</if>
+			<if test="elevation != null"> and elevation = #{elevation}</if>
+			<if test="preDistance != null"> and pre_distance = #{preDistance}</if>
+			<if test="postDistance != null"> and post_distance = #{postDistance}</if>
+			<if test="mark != null"> and mark = #{mark}</if>
+	    </trim>
+	</sql>
+	<sql id="insertFields"><!-- Fields to insert -->
+		<trim  suffixOverrides="," >
+			<if test="recordId != null">record_id,</if>
+			<if test="dataId != null">data_id,</if>
+			<if test="pointNumber != null">point_number,</if>
+			<if test="controlPoint != null">control_point,</if>
+			<if test="elevation != null">elevation,</if>
+			<if test="preDistance != null">pre_distance,</if>
+			<if test="postDistance != null">post_distance,</if>
+			<if test="mark != null">mark,</if>
+		</trim>
+	</sql>
+
+	<sql id="insertValues"><!-- Values to insert -->
+		<trim  suffixOverrides="," >
+			<if test="recordId != null">#{recordId},</if>
+			<if test="dataId != null">#{dataId},</if>
+			<if test="pointNumber != null">#{pointNumber},</if>
+			<if test="controlPoint != null">#{controlPoint},</if>
+			<if test="elevation != null">#{elevation},</if>
+			<if test="preDistance != null">#{preDistance},</if>
+			<if test="postDistance != null">#{postDistance},</if>
+			<if test="mark != null">#{mark},</if>
+		</trim>
+	</sql>
+
+<!-- End Base Config -->
+
+	<!-- 新增 -->
+	<insert id="insert" parameterType="Object" >
+		insert into task_data(<include refid="insertFields"/>)
+		values(<include refid="insertValues"/>)
+	</insert>
+
+	<!-- 修改数据 -->
+	<update id="update" parameterType="Object">
+		update task_data set
+		<include refid="sets"/>
+		where id = #{id}
+	</update>
+
+	<!-- 作废数据 -->
+	<update id="invalid" parameterType="Object">
+		update task_data set mark=-1
+		where id = #{id}
+	</update>
+
+	<!-- 获取记录Count数量 -->
+	<select id="selectPageCount" parameterType="Map" resultType="Integer">
+		select count(*) from task_data
+	</select>
+	<!-- 获取List<T>分页对象 -->
+	<select id="selectPageEntities" parameterType="Map" resultType="com.taskdata.model.TaskDataEntity">
+		select * from task_data
+		order by id desc limit #{pageBegin},#{pageSize}
+	</select>
+
+	<!--获取T对象 (查询条件明确，禁止conditions) -->
+	<select id="selectEntity" parameterType="Object" resultType="com.taskdata.model.TaskDataEntity">
+		select <include refid="fields"/> from task_data
+		<include refid="conditions"/>
+	</select>
+
+	<!-- 批量增加 -->
+	<insert id="insertBatch" parameterType="List" >
+		insert into task_data(<include refid="fields"/>)
+		values
+			<foreach collection="list" item="obj" index="index" separator=",">
+				(<include refid="foreachObj"/>)
+			</foreach>
+	</insert>
+
+</mapper>
