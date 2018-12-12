@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bishe.mapper.UserTeamMapper" >
+  <resultMap id="BaseResultMap" type="com.gkshare.pojo.UserTeam" >
+    <id column="user_team_id" property="userTeamId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="team_id" property="teamId" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="CHAR" />
+    <result column="mark" property="mark" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_team_id, user_id, team_id, role, mark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gkshare.pojo.UserTeamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_team
+    where user_team_id = #{userTeamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_team
+    where user_team_id = #{userTeamId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gkshare.pojo.UserTeamExample" >
+    delete from user_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gkshare.pojo.UserTeam" >
+    insert into user_team (user_team_id, user_id, team_id, 
+      role, mark)
+    values (#{userTeamId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{teamId,jdbcType=INTEGER}, 
+      #{role,jdbcType=CHAR}, #{mark,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gkshare.pojo.UserTeam" >
+    insert into user_team
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userTeamId != null" >
+        user_team_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="teamId != null" >
+        team_id,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userTeamId != null" >
+        #{userTeamId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null" >
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=CHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gkshare.pojo.UserTeamExample" resultType="java.lang.Integer" >
+    select count(*) from user_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_team
+    <set >
+      <if test="record.userTeamId != null" >
+        user_team_id = #{record.userTeamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamId != null" >
+        team_id = #{record.teamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=CHAR},
+      </if>
+      <if test="record.mark != null" >
+        mark = #{record.mark,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_team
+    set user_team_id = #{record.userTeamId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      team_id = #{record.teamId,jdbcType=INTEGER},
+      role = #{record.role,jdbcType=CHAR},
+      mark = #{record.mark,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gkshare.pojo.UserTeam" >
+    update user_team
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null" >
+        team_id = #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=CHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=CHAR},
+      </if>
+    </set>
+    where user_team_id = #{userTeamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gkshare.pojo.UserTeam" >
+    update user_team
+    set user_id = #{userId,jdbcType=INTEGER},
+      team_id = #{teamId,jdbcType=INTEGER},
+      role = #{role,jdbcType=CHAR},
+      mark = #{mark,jdbcType=CHAR}
+    where user_team_id = #{userTeamId,jdbcType=INTEGER}
+  </update>
+</mapper>
