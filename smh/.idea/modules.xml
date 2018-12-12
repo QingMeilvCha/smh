@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/smh.iml" filepath="$PROJECT_DIR$/smh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smh-common/smh-common.iml" filepath="$PROJECT_DIR$/smh-common/smh-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smh-dao/smh-dao.iml" filepath="$PROJECT_DIR$/smh-dao/smh-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smh-service/smh-service.iml" filepath="$PROJECT_DIR$/smh-service/smh-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smh-web/smh-web.iml" filepath="$PROJECT_DIR$/smh-web/smh-web.iml" />
+    </modules>
+  </component>
+</project>
