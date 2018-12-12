@@ -84,9 +84,9 @@
 		select count(*) from user
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.user.model.UserEntity">
-		select * from user
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.user.model.UserEntity">
+		select <include refid="fields"/> from user
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->

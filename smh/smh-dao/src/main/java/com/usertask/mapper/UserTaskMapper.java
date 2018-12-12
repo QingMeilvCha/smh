@@ -10,6 +10,11 @@
 package com.usertask.mapper;
 
 
+import com.usertask.model.UserTaskEntity;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName UserTaskMapper
  * @Description Service
@@ -18,4 +23,13 @@ package com.usertask.mapper;
  */
 public interface UserTaskMapper {
 
+    void insert(UserTaskEntity taskDataEntity);
+
+    void update(UserTaskEntity taskDataEntity);
+
+    UserTaskEntity selectEntity(Map<String, Object> param);
+
+    void insertBatch(List<UserTaskEntity> list);
+
+    List<UserTaskEntity> selectEntities(Map<String, Object> param);
 }

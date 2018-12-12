@@ -80,9 +80,9 @@
 		select count(*) from user_task
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.usertask.model.UserTaskEntity">
-		select * from user_task
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.usertask.model.UserTaskEntity">
+		select <include refid="fields"/> from user_task
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.team.mapper.teamMapper">
+<mapper namespace="com.team.mapper.TeamMapper">
 <!-- Begin Base Config -->
 	<sql id="fields" ><!-- ALl Fields -->
 		team_id, team_name, team_owner_id, summary, creat_time, mark
@@ -86,13 +86,13 @@
 		select count(*) from team
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.team.model.teamEntity">
-		select * from team
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.team.model.TeamEntity">
+		select <include refid="fields"/> from team
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->
-	<select id="selectEntity" parameterType="Object" resultType="com.team.model.teamEntity">
+	<select id="selectEntity" parameterType="Object" resultType="com.team.model.TeamEntity">
 		select <include refid="fields"/> from team
 		<include refid="conditions"/>
 	</select>

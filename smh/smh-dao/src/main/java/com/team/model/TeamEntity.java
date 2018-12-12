@@ -1,5 +1,5 @@
 /**
- * @Title teamEntity.java
+ * @Title TeamEntity.java
  * @Package com.team.model
  * @Description 
  * @author zhouyuhang
@@ -13,13 +13,13 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * @ClassName teamEntity
+ * @ClassName TeamEntity
  * @Description Service
  * @author zhouyuhang
  * @date 2018-12-12 16:38:09
  */
 @Data
-public class teamEntity {
+public class TeamEntity {
 
 	/**
 	 * @Fields serialVersionUID

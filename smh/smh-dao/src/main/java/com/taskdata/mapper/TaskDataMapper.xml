@@ -94,9 +94,9 @@
 		select count(*) from task_data
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.taskdata.model.TaskDataEntity">
-		select * from task_data
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.taskdata.model.TaskDataEntity">
+		select <include refid="fields"/> from task_data
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->

@@ -80,9 +80,9 @@
 		select count(*) from team_task
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.teamtask.model.TeamTaskEntity">
-		select * from team_task
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.teamtask.model.TeamTaskEntity">
+		select <include refid="fields"/> from team_task
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->

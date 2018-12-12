@@ -9,6 +9,11 @@
 
 package com.userteam.mapper;
 
+import com.userteam.model.UserTeamEntity;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName UserTeamMapper
  * @Description Service
@@ -17,4 +22,13 @@ package com.userteam.mapper;
  */
 public interface UserTeamMapper {
 
+    void insert(UserTeamEntity taskDataEntity);
+
+    void update(UserTeamEntity taskDataEntity);
+
+    UserTeamEntity selectEntity(Map<String, Object> param);
+
+    void insertBatch(List<UserTeamEntity> list);
+
+    List<UserTeamEntity> selectEntities(Map<String, Object> param);
 }

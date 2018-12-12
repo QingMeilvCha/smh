@@ -76,9 +76,9 @@
 		select count(*) from user_team
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectPageEntities" parameterType="Map" resultType="com.userteam.model.UserTeamEntity">
-		select * from user_team
-		order by id desc limit #{pageBegin},#{pageSize}
+	<select id="selectEntities" parameterType="Map" resultType="com.userteam.model.UserTeamEntity">
+		select <include refid="fields"/> from user_team
+		<include refid="conditions"/>
 	</select>
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->

@@ -10,6 +10,11 @@
 package com.taskdata.mapper;
 
 
+import com.taskdata.model.TaskDataEntity;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName TaskDataMapper
  * @Description Service
@@ -18,4 +23,13 @@ package com.taskdata.mapper;
  */
 public interface TaskDataMapper {
 
+    void insert(TaskDataEntity taskDataEntity);
+
+    void update(TaskDataEntity taskDataEntity);
+
+    TaskDataEntity selectEntity(Map<String, Object> param);
+
+    void insertBatch(List<TaskDataEntity> list);
+
+    List<TaskDataEntity> selectEntities(Map<String, Object> param);
 }

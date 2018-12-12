@@ -10,6 +10,11 @@
 package com.teamtask.mapper;
 
 
+import com.teamtask.model.TeamTaskEntity;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName TeamTaskMapper
  * @Description Service
@@ -18,4 +23,13 @@ package com.teamtask.mapper;
  */
 public interface TeamTaskMapper  {
 
+    void insert(TeamTaskEntity taskDataEntity);
+
+    void update(TeamTaskEntity taskDataEntity);
+
+    TeamTaskEntity selectEntity(Map<String, Object> param);
+
+    void insertBatch(List<TeamTaskEntity> list);
+
+    List<TeamTaskEntity> selectEntities(Map<String, Object> param);
 }

@@ -10,6 +10,11 @@
 package com.user.mapper;
 
 
+import com.user.model.UserEntity;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName UserMapper
  * @Description Service
@@ -18,4 +23,13 @@ package com.user.mapper;
  */
 public interface UserMapper {
 
+    void insert(UserEntity taskDataEntity);
+
+    void update(UserEntity taskDataEntity);
+
+    UserEntity selectEntity(Map<String, Object> param);
+
+    void insertBatch(List<UserEntity> list);
+
+    List<UserEntity> selectEntities(Map<String, Object> param);
 }
