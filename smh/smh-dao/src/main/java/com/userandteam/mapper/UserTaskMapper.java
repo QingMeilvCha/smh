@@ -2,7 +2,6 @@ package com.userandteam.mapper;
 
 
 import com.task.model.UserTask;
-import com.task.model.UserTaskExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
