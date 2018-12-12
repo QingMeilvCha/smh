@@ -1,4 +1,4 @@
-package model.task;
+package com.task.model;
 
 public class TaskData {
     private Integer taskDataId;

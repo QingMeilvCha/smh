@@ -1,4 +1,4 @@
-package model.userandteam;
+package com.userandteam.model;
 
 public class UserTeam {
     private Integer userTeamId;

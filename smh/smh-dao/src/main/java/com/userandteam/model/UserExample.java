@@ -1,4 +1,4 @@
-package model.userandteam;
+package com.userandteam.model;
 
 import java.util.ArrayList;
 import java.util.List;

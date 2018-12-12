@@ -1,17 +1,17 @@
-package model.task;
+package com.userandteam.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TeamTaskExample {
+public class TeamExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TeamTaskExample() {
+    public TeamExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,66 +105,6 @@ public class TeamTaskExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andTeamTaskIdIsNull() {
-            addCriterion("team_task_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdIsNotNull() {
-            addCriterion("team_task_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdEqualTo(Integer value) {
-            addCriterion("team_task_id =", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdNotEqualTo(Integer value) {
-            addCriterion("team_task_id <>", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdGreaterThan(Integer value) {
-            addCriterion("team_task_id >", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("team_task_id >=", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdLessThan(Integer value) {
-            addCriterion("team_task_id <", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdLessThanOrEqualTo(Integer value) {
-            addCriterion("team_task_id <=", value, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdIn(List<Integer> values) {
-            addCriterion("team_task_id in", values, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdNotIn(List<Integer> values) {
-            addCriterion("team_task_id not in", values, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdBetween(Integer value1, Integer value2) {
-            addCriterion("team_task_id between", value1, value2, "teamTaskId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamTaskIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("team_task_id not between", value1, value2, "teamTaskId");
-            return (Criteria) this;
-        }
-
         public Criteria andTeamIdIsNull() {
             addCriterion("team_id is null");
             return (Criteria) this;
@@ -225,133 +165,143 @@ public class TeamTaskExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataIdIsNull() {
-            addCriterion("data_id is null");
+        public Criteria andTeamNameIsNull() {
+            addCriterion("team_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdIsNotNull() {
-            addCriterion("data_id is not null");
+        public Criteria andTeamNameIsNotNull() {
+            addCriterion("team_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdEqualTo(Integer value) {
-            addCriterion("data_id =", value, "dataId");
+        public Criteria andTeamNameEqualTo(String value) {
+            addCriterion("team_name =", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdNotEqualTo(Integer value) {
-            addCriterion("data_id <>", value, "dataId");
+        public Criteria andTeamNameNotEqualTo(String value) {
+            addCriterion("team_name <>", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdGreaterThan(Integer value) {
-            addCriterion("data_id >", value, "dataId");
+        public Criteria andTeamNameGreaterThan(String value) {
+            addCriterion("team_name >", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("data_id >=", value, "dataId");
+        public Criteria andTeamNameGreaterThanOrEqualTo(String value) {
+            addCriterion("team_name >=", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdLessThan(Integer value) {
-            addCriterion("data_id <", value, "dataId");
+        public Criteria andTeamNameLessThan(String value) {
+            addCriterion("team_name <", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdLessThanOrEqualTo(Integer value) {
-            addCriterion("data_id <=", value, "dataId");
+        public Criteria andTeamNameLessThanOrEqualTo(String value) {
+            addCriterion("team_name <=", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdIn(List<Integer> values) {
-            addCriterion("data_id in", values, "dataId");
+        public Criteria andTeamNameLike(String value) {
+            addCriterion("team_name like", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdNotIn(List<Integer> values) {
-            addCriterion("data_id not in", values, "dataId");
+        public Criteria andTeamNameNotLike(String value) {
+            addCriterion("team_name not like", value, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdBetween(Integer value1, Integer value2) {
-            addCriterion("data_id between", value1, value2, "dataId");
+        public Criteria andTeamNameIn(List<String> values) {
+            addCriterion("team_name in", values, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andDataIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("data_id not between", value1, value2, "dataId");
+        public Criteria andTeamNameNotIn(List<String> values) {
+            addCriterion("team_name not in", values, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeIsNull() {
-            addCriterion("task_type is null");
+        public Criteria andTeamNameBetween(String value1, String value2) {
+            addCriterion("team_name between", value1, value2, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeIsNotNull() {
-            addCriterion("task_type is not null");
+        public Criteria andTeamNameNotBetween(String value1, String value2) {
+            addCriterion("team_name not between", value1, value2, "teamName");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeEqualTo(String value) {
-            addCriterion("task_type =", value, "taskType");
+        public Criteria andSummaryIsNull() {
+            addCriterion("summary is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeNotEqualTo(String value) {
-            addCriterion("task_type <>", value, "taskType");
+        public Criteria andSummaryIsNotNull() {
+            addCriterion("summary is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeGreaterThan(String value) {
-            addCriterion("task_type >", value, "taskType");
+        public Criteria andSummaryEqualTo(String value) {
+            addCriterion("summary =", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("task_type >=", value, "taskType");
+        public Criteria andSummaryNotEqualTo(String value) {
+            addCriterion("summary <>", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeLessThan(String value) {
-            addCriterion("task_type <", value, "taskType");
+        public Criteria andSummaryGreaterThan(String value) {
+            addCriterion("summary >", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeLessThanOrEqualTo(String value) {
-            addCriterion("task_type <=", value, "taskType");
+        public Criteria andSummaryGreaterThanOrEqualTo(String value) {
+            addCriterion("summary >=", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeLike(String value) {
-            addCriterion("task_type like", value, "taskType");
+        public Criteria andSummaryLessThan(String value) {
+            addCriterion("summary <", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeNotLike(String value) {
-            addCriterion("task_type not like", value, "taskType");
+        public Criteria andSummaryLessThanOrEqualTo(String value) {
+            addCriterion("summary <=", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeIn(List<String> values) {
-            addCriterion("task_type in", values, "taskType");
+        public Criteria andSummaryLike(String value) {
+            addCriterion("summary like", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeNotIn(List<String> values) {
-            addCriterion("task_type not in", values, "taskType");
+        public Criteria andSummaryNotLike(String value) {
+            addCriterion("summary not like", value, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeBetween(String value1, String value2) {
-            addCriterion("task_type between", value1, value2, "taskType");
+        public Criteria andSummaryIn(List<String> values) {
+            addCriterion("summary in", values, "summary");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTypeNotBetween(String value1, String value2) {
-            addCriterion("task_type not between", value1, value2, "taskType");
+        public Criteria andSummaryNotIn(List<String> values) {
+            addCriterion("summary not in", values, "summary");
+            return (Criteria) this;
+        }
+
+        public Criteria andSummaryBetween(String value1, String value2) {
+            addCriterion("summary between", value1, value2, "summary");
+            return (Criteria) this;
+        }
+
+        public Criteria andSummaryNotBetween(String value1, String value2) {
+            addCriterion("summary not between", value1, value2, "summary");
             return (Criteria) this;
         }
 

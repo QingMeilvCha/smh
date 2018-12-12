@@ -1,4 +1,4 @@
-package model.task;
+package com.task.model;
 
 import java.util.ArrayList;
 import java.util.Date;

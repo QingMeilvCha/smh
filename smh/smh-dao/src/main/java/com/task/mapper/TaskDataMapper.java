@@ -1,8 +1,8 @@
-package mapper.task;
+package com.task.mapper;
 
 
-import model.task.TaskData;
-import model.task.TaskDataExample;
+import com.task.model.TaskData;
+import com.task.model.TaskDataExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,11 +1,11 @@
-package model.task;
+package com.task.model;
 
 import java.util.Date;
 
-public class UserTask {
-    private Integer userTaskId;
+public class TeamTask {
+    private Integer teamTaskId;
 
-    private Integer userId;
+    private Integer teamId;
 
     private Integer dataId;
 
@@ -15,20 +15,20 @@ public class UserTask {
 
     private String mark;
 
-    public Integer getUserTaskId() {
-        return userTaskId;
+    public Integer getTeamTaskId() {
+        return teamTaskId;
     }
 
-    public void setUserTaskId(Integer userTaskId) {
-        this.userTaskId = userTaskId;
+    public void setTeamTaskId(Integer teamTaskId) {
+        this.teamTaskId = teamTaskId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getTeamId() {
+        return teamId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
     }
 
     public Integer getDataId() {

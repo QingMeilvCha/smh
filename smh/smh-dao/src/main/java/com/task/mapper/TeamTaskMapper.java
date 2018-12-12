@@ -1,8 +1,8 @@
-package mapper.task;
+package com.task.mapper;
 
 
-import model.task.TeamTask;
-import model.task.TeamTaskExample;
+import com.task.model.TeamTask;
+import com.task.model.TeamTaskExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
