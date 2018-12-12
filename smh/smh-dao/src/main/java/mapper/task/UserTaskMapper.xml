@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bishe.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.gkshare.pojo.User" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="CHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
-    <result column="email" property="email" jdbcType="CHAR" />
-    <result column="phone_number" property="phoneNumber" jdbcType="CHAR" />
+<mapper namespace="com.bishe.mapper.userandteam.UserTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.gkshare.pojo.UserTask" >
+    <id column="user_task_id" property="userTaskId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="data_id" property="dataId" jdbcType="INTEGER" />
+    <result column="task_type" property="taskType" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
     <result column="mark" property="mark" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_name, sex, age, email, phone_number, mark
+    user_task_id, user_id, data_id, task_type, creat_time, mark
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gkshare.pojo.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gkshare.pojo.UserTaskExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from user_task
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,102 +87,93 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user
-    where user_id = #{userId,jdbcType=INTEGER}
+    from user_task
+    where user_task_id = #{userTaskId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
-    where user_id = #{userId,jdbcType=INTEGER}
+    delete from user_task
+    where user_task_id = #{userTaskId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gkshare.pojo.UserExample" >
-    delete from user
+  <delete id="deleteByExample" parameterType="com.gkshare.pojo.UserTaskExample" >
+    delete from user_task
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gkshare.pojo.User" >
-    insert into user (user_id, user_name, sex, 
-      age, email, phone_number, 
-      mark)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
-      #{age,jdbcType=INTEGER}, #{email,jdbcType=CHAR}, #{phoneNumber,jdbcType=CHAR}, 
-      #{mark,jdbcType=CHAR})
+  <insert id="insert" parameterType="com.gkshare.pojo.UserTask" >
+    insert into user_task (user_task_id, user_id, data_id, 
+      task_type, creat_time, mark
+      )
+    values (#{userTaskId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{dataId,jdbcType=INTEGER}, 
+      #{taskType,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, #{mark,jdbcType=CHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.gkshare.pojo.User" >
-    insert into user
+  <insert id="insertSelective" parameterType="com.gkshare.pojo.UserTask" >
+    insert into user_task
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userTaskId != null" >
+        user_task_id,
+      </if>
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="dataId != null" >
+        data_id,
       </if>
-      <if test="sex != null" >
-        sex,
+      <if test="taskType != null" >
+        task_type,
       </if>
-      <if test="age != null" >
-        age,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="phoneNumber != null" >
-        phone_number,
+      <if test="creatTime != null" >
+        creat_time,
       </if>
       <if test="mark != null" >
         mark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userTaskId != null" >
+        #{userTaskId,jdbcType=INTEGER},
+      </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="dataId != null" >
+        #{dataId,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=CHAR},
+      <if test="taskType != null" >
+        #{taskType,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=CHAR},
-      </if>
-      <if test="phoneNumber != null" >
-        #{phoneNumber,jdbcType=CHAR},
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
       </if>
       <if test="mark != null" >
         #{mark,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gkshare.pojo.UserExample" resultType="java.lang.Integer" >
-    select count(*) from user
+  <select id="countByExample" parameterType="com.gkshare.pojo.UserTaskExample" resultType="java.lang.Integer" >
+    select count(*) from user_task
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update user
+    update user_task
     <set >
+      <if test="record.userTaskId != null" >
+        user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.userName != null" >
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.dataId != null" >
+        data_id = #{record.dataId,jdbcType=INTEGER},
       </if>
-      <if test="record.sex != null" >
-        sex = #{record.sex,jdbcType=CHAR},
+      <if test="record.taskType != null" >
+        task_type = #{record.taskType,jdbcType=VARCHAR},
       </if>
-      <if test="record.age != null" >
-        age = #{record.age,jdbcType=INTEGER},
-      </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=CHAR},
-      </if>
-      <if test="record.phoneNumber != null" >
-        phone_number = #{record.phoneNumber,jdbcType=CHAR},
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.mark != null" >
         mark = #{record.mark,jdbcType=CHAR},
@@ -194,50 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update user
-    set user_id = #{record.userId,jdbcType=INTEGER},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=CHAR},
-      age = #{record.age,jdbcType=INTEGER},
-      email = #{record.email,jdbcType=CHAR},
-      phone_number = #{record.phoneNumber,jdbcType=CHAR},
+    update user_task
+    set user_task_id = #{record.userTaskId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      data_id = #{record.dataId,jdbcType=INTEGER},
+      task_type = #{record.taskType,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
       mark = #{record.mark,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gkshare.pojo.User" >
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.gkshare.pojo.UserTask" >
+    update user_task
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=CHAR},
+      <if test="dataId != null" >
+        data_id = #{dataId,jdbcType=INTEGER},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=CHAR},
-      </if>
-      <if test="phoneNumber != null" >
-        phone_number = #{phoneNumber,jdbcType=CHAR},
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
       </if>
       <if test="mark != null" >
         mark = #{mark,jdbcType=CHAR},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=INTEGER}
+    where user_task_id = #{userTaskId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gkshare.pojo.User" >
-    update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=CHAR},
-      age = #{age,jdbcType=INTEGER},
-      email = #{email,jdbcType=CHAR},
-      phone_number = #{phoneNumber,jdbcType=CHAR},
+  <update id="updateByPrimaryKey" parameterType="com.gkshare.pojo.UserTask" >
+    update user_task
+    set user_id = #{userId,jdbcType=INTEGER},
+      data_id = #{dataId,jdbcType=INTEGER},
+      task_type = #{taskType,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
       mark = #{mark,jdbcType=CHAR}
-    where user_id = #{userId,jdbcType=INTEGER}
+    where user_task_id = #{userTaskId,jdbcType=INTEGER}
   </update>
 </mapper>

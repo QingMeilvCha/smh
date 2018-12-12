@@ -1,8 +1,8 @@
-package mapper;
+package mapper.userandteam;
 
 
-import model.User;
-import model.UserExample;
+import model.userandteam.User;
+import model.userandteam.UserExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package model;
+package model.userandteam;
 
 import java.util.Date;
 

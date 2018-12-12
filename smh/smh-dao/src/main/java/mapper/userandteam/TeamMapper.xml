@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bishe.mapper.TaskDataMapper" >
-  <resultMap id="BaseResultMap" type="com.gkshare.pojo.TaskData" >
-    <id column="task_data_id" property="taskDataId" jdbcType="INTEGER" />
+<mapper namespace="com.bishe.mapper.userandteam.TeamMapper" >
+  <resultMap id="BaseResultMap" type="com.gkshare.pojo.Team" >
+    <id column="team_id" property="teamId" jdbcType="INTEGER" />
+    <result column="team_name" property="teamName" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
     <result column="mark" property="mark" jdbcType="CHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.gkshare.pojo.TaskData" extends="BaseResultMap" >
-    <result column="data" property="data" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,20 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    task_data_id, mark
+    team_id, team_name, summary, creat_time, mark
   </sql>
-  <sql id="Blob_Column_List" >
-    data
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.gkshare.pojo.TaskDataExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gkshare.pojo.TeamExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from task_data
+    from team
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,130 +83,129 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gkshare.pojo.TaskDataExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from task_data
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from task_data
-    where task_data_id = #{taskDataId,jdbcType=INTEGER}
+    from team
+    where team_id = #{teamId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from task_data
-    where task_data_id = #{taskDataId,jdbcType=INTEGER}
+    delete from team
+    where team_id = #{teamId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gkshare.pojo.TaskDataExample" >
-    delete from task_data
+  <delete id="deleteByExample" parameterType="com.gkshare.pojo.TeamExample" >
+    delete from team
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gkshare.pojo.TaskData" >
-    insert into task_data (task_data_id, mark, data
-      )
-    values (#{taskDataId,jdbcType=INTEGER}, #{mark,jdbcType=CHAR}, #{data,jdbcType=LONGVARCHAR}
-      )
+  <insert id="insert" parameterType="com.gkshare.pojo.Team" >
+    insert into team (team_id, team_name, summary, 
+      creat_time, mark)
+    values (#{teamId,jdbcType=INTEGER}, #{teamName,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{mark,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gkshare.pojo.TaskData" >
-    insert into task_data
+  <insert id="insertSelective" parameterType="com.gkshare.pojo.Team" >
+    insert into team
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="taskDataId != null" >
-        task_data_id,
+      <if test="teamId != null" >
+        team_id,
+      </if>
+      <if test="teamName != null" >
+        team_name,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
       </if>
       <if test="mark != null" >
         mark,
       </if>
-      <if test="data != null" >
-        data,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="taskDataId != null" >
-        #{taskDataId,jdbcType=INTEGER},
+      <if test="teamId != null" >
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
       </if>
       <if test="mark != null" >
         #{mark,jdbcType=CHAR},
       </if>
-      <if test="data != null" >
-        #{data,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gkshare.pojo.TaskDataExample" resultType="java.lang.Integer" >
-    select count(*) from task_data
+  <select id="countByExample" parameterType="com.gkshare.pojo.TeamExample" resultType="java.lang.Integer" >
+    select count(*) from team
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update task_data
+    update team
     <set >
-      <if test="record.taskDataId != null" >
-        task_data_id = #{record.taskDataId,jdbcType=INTEGER},
+      <if test="record.teamId != null" >
+        team_id = #{record.teamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamName != null" >
+        team_name = #{record.teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summary != null" >
+        summary = #{record.summary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.mark != null" >
         mark = #{record.mark,jdbcType=CHAR},
       </if>
-      <if test="record.data != null" >
-        data = #{record.data,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update task_data
-    set task_data_id = #{record.taskDataId,jdbcType=INTEGER},
-      mark = #{record.mark,jdbcType=CHAR},
-      data = #{record.data,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update task_data
-    set task_data_id = #{record.taskDataId,jdbcType=INTEGER},
+    update team
+    set team_id = #{record.teamId,jdbcType=INTEGER},
+      team_name = #{record.teamName,jdbcType=VARCHAR},
+      summary = #{record.summary,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
       mark = #{record.mark,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gkshare.pojo.TaskData" >
-    update task_data
+  <update id="updateByPrimaryKeySelective" parameterType="com.gkshare.pojo.Team" >
+    update team
     <set >
+      <if test="teamName != null" >
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="mark != null" >
         mark = #{mark,jdbcType=CHAR},
       </if>
-      <if test="data != null" >
-        data = #{data,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where task_data_id = #{taskDataId,jdbcType=INTEGER}
+    where team_id = #{teamId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gkshare.pojo.TaskData" >
-    update task_data
-    set mark = #{mark,jdbcType=CHAR},
-      data = #{data,jdbcType=LONGVARCHAR}
-    where task_data_id = #{taskDataId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.gkshare.pojo.TaskData" >
-    update task_data
-    set mark = #{mark,jdbcType=CHAR}
-    where task_data_id = #{taskDataId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.gkshare.pojo.Team" >
+    update team
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      mark = #{mark,jdbcType=CHAR}
+    where team_id = #{teamId,jdbcType=INTEGER}
   </update>
 </mapper>

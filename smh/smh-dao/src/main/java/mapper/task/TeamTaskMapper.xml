@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bishe.mapper.TeamTaskMapper" >
+<mapper namespace="com.bishe.mapper.task.TeamTaskMapper" >
   <resultMap id="BaseResultMap" type="com.gkshare.pojo.TeamTask" >
     <id column="team_task_id" property="teamTaskId" jdbcType="INTEGER" />
     <result column="team_id" property="teamId" jdbcType="INTEGER" />

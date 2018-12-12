@@ -1,17 +1,16 @@
-package model;
+package model.userandteam;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TeamExample {
+public class UserTeamExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TeamExample() {
+    public UserTeamExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,6 +104,126 @@ public class TeamExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andUserTeamIdIsNull() {
+            addCriterion("user_team_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdIsNotNull() {
+            addCriterion("user_team_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdEqualTo(Integer value) {
+            addCriterion("user_team_id =", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdNotEqualTo(Integer value) {
+            addCriterion("user_team_id <>", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdGreaterThan(Integer value) {
+            addCriterion("user_team_id >", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_team_id >=", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdLessThan(Integer value) {
+            addCriterion("user_team_id <", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_team_id <=", value, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdIn(List<Integer> values) {
+            addCriterion("user_team_id in", values, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdNotIn(List<Integer> values) {
+            addCriterion("user_team_id not in", values, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_team_id between", value1, value2, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserTeamIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_team_id not between", value1, value2, "userTeamId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
         public Criteria andTeamIdIsNull() {
             addCriterion("team_id is null");
             return (Criteria) this;
@@ -165,203 +284,73 @@ public class TeamExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameIsNull() {
-            addCriterion("team_name is null");
+        public Criteria andRoleIsNull() {
+            addCriterion("role is null");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameIsNotNull() {
-            addCriterion("team_name is not null");
+        public Criteria andRoleIsNotNull() {
+            addCriterion("role is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameEqualTo(String value) {
-            addCriterion("team_name =", value, "teamName");
+        public Criteria andRoleEqualTo(String value) {
+            addCriterion("role =", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameNotEqualTo(String value) {
-            addCriterion("team_name <>", value, "teamName");
+        public Criteria andRoleNotEqualTo(String value) {
+            addCriterion("role <>", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameGreaterThan(String value) {
-            addCriterion("team_name >", value, "teamName");
+        public Criteria andRoleGreaterThan(String value) {
+            addCriterion("role >", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameGreaterThanOrEqualTo(String value) {
-            addCriterion("team_name >=", value, "teamName");
+        public Criteria andRoleGreaterThanOrEqualTo(String value) {
+            addCriterion("role >=", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameLessThan(String value) {
-            addCriterion("team_name <", value, "teamName");
+        public Criteria andRoleLessThan(String value) {
+            addCriterion("role <", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameLessThanOrEqualTo(String value) {
-            addCriterion("team_name <=", value, "teamName");
+        public Criteria andRoleLessThanOrEqualTo(String value) {
+            addCriterion("role <=", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameLike(String value) {
-            addCriterion("team_name like", value, "teamName");
+        public Criteria andRoleLike(String value) {
+            addCriterion("role like", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameNotLike(String value) {
-            addCriterion("team_name not like", value, "teamName");
+        public Criteria andRoleNotLike(String value) {
+            addCriterion("role not like", value, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameIn(List<String> values) {
-            addCriterion("team_name in", values, "teamName");
+        public Criteria andRoleIn(List<String> values) {
+            addCriterion("role in", values, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameNotIn(List<String> values) {
-            addCriterion("team_name not in", values, "teamName");
+        public Criteria andRoleNotIn(List<String> values) {
+            addCriterion("role not in", values, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameBetween(String value1, String value2) {
-            addCriterion("team_name between", value1, value2, "teamName");
+        public Criteria andRoleBetween(String value1, String value2) {
+            addCriterion("role between", value1, value2, "role");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNameNotBetween(String value1, String value2) {
-            addCriterion("team_name not between", value1, value2, "teamName");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryIsNull() {
-            addCriterion("summary is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryIsNotNull() {
-            addCriterion("summary is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryEqualTo(String value) {
-            addCriterion("summary =", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryNotEqualTo(String value) {
-            addCriterion("summary <>", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryGreaterThan(String value) {
-            addCriterion("summary >", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryGreaterThanOrEqualTo(String value) {
-            addCriterion("summary >=", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryLessThan(String value) {
-            addCriterion("summary <", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryLessThanOrEqualTo(String value) {
-            addCriterion("summary <=", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryLike(String value) {
-            addCriterion("summary like", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryNotLike(String value) {
-            addCriterion("summary not like", value, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryIn(List<String> values) {
-            addCriterion("summary in", values, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryNotIn(List<String> values) {
-            addCriterion("summary not in", values, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryBetween(String value1, String value2) {
-            addCriterion("summary between", value1, value2, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andSummaryNotBetween(String value1, String value2) {
-            addCriterion("summary not between", value1, value2, "summary");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeIsNull() {
-            addCriterion("creat_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeIsNotNull() {
-            addCriterion("creat_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeEqualTo(Date value) {
-            addCriterion("creat_time =", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeNotEqualTo(Date value) {
-            addCriterion("creat_time <>", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeGreaterThan(Date value) {
-            addCriterion("creat_time >", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("creat_time >=", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeLessThan(Date value) {
-            addCriterion("creat_time <", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeLessThanOrEqualTo(Date value) {
-            addCriterion("creat_time <=", value, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeIn(List<Date> values) {
-            addCriterion("creat_time in", values, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeNotIn(List<Date> values) {
-            addCriterion("creat_time not in", values, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeBetween(Date value1, Date value2) {
-            addCriterion("creat_time between", value1, value2, "creatTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatTimeNotBetween(Date value1, Date value2) {
-            addCriterion("creat_time not between", value1, value2, "creatTime");
+        public Criteria andRoleNotBetween(String value1, String value2) {
+            addCriterion("role not between", value1, value2, "role");
             return (Criteria) this;
         }
 
