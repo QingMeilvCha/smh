@@ -10,6 +10,7 @@
 package com.smh.user.controller;
 
 
+import com.smh.user.model.UserEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class UserController {
 
     @ApiOperation("接口1")
     @PostMapping(value="/register")
-    public void userRegister(){
+    public void userRegister(UserEntity userEntity){
 
     }
 }
