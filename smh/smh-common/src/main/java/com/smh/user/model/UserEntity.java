@@ -10,7 +10,6 @@
 package com.smh.user.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * @ClassName UserEntity

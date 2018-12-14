@@ -9,8 +9,9 @@
 
 package com.smh.taskdata.model;
 
-import java.math.BigDecimal;
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 /**
  * @ClassName TaskDataEntity

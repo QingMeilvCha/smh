@@ -1,25 +1,26 @@
 /**
- * @Title TeamEntity.java
- * @Package com.team.model
+ * @Title UserTaskEntity.java
+ * @Package com.usertask.model
  * @Description 
  * @author zhouyuhang
- * @date 2018-12-12 16:38:09
+ * @date 2018-12-12 16:37:05
  * @version : V1.0
  */
 
-package com.smh.team.model;
+package com.smh.usertask.model;
 
-import java.util.Date;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * @ClassName TeamEntity
+ * @ClassName UserTaskEntity
  * @Description Service
  * @author zhouyuhang
- * @date 2018-12-12 16:38:09
+ * @date 2018-12-12 16:37:05
  */
 @Data
-public class TeamEntity {
+public class UserTaskEntity {
 
 	/**
 	 * @Fields serialVersionUID
@@ -30,22 +31,22 @@ public class TeamEntity {
 	/**
 	 * 
 	 */
-	private Integer teamId;
+	private Integer userTaskId;
 
 	/**
 	 * 
 	 */
-	private String teamName;
+	private Integer userId;
 
 	/**
 	 * 
 	 */
-	private Integer teamOwnerId;
+	private Integer dataId;
 
 	/**
 	 * 
 	 */
-	private String summary;
+	private String taskType;
 
 	/**
 	 * 
