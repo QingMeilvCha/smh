@@ -3,7 +3,7 @@
  * @Package com.taskdata.model
  * @Description 
  * @author zhouyuhang
- * @date 2018-12-12 16:37:55
+ * @date 2018-12-14 16:48:21
  * @version : V1.0
  */
 
@@ -16,10 +16,10 @@ import lombok.Data;
  * @ClassName TaskDataEntity
  * @Description Service
  * @author zhouyuhang
- * @date 2018-12-12 16:37:55
+ * @date 2018-12-14 16:48:21
  */
 @Data
-public class TaskDataEntity{
+public class TaskDataEntity {
 
 	/**
 	 * @Fields serialVersionUID
@@ -51,15 +51,50 @@ public class TaskDataEntity{
 	/**
 	 * 
 	 */
-	private BigDecimal elevation;
-
-	/**
-	 * 
-	 */
-	private BigDecimal preDistance;
+	private BigDecimal postDistanceUp;
 
 	/**
 	 * 
 	 */
 	private BigDecimal postDistance;
+
+	/**
+	 * 
+	 */
+	private BigDecimal preDistanceUo;
+
+	/**
+	 * 
+	 */
+	private BigDecimal preDistanceBottm;
+
+	/**
+	 * 
+	 */
+	private BigDecimal distanceReduce;
+
+	/**
+	 * 
+	 */
+	private BigDecimal accDistance;
+
+	/**
+	 * 
+	 */
+	private BigDecimal postBlack;
+
+	/**
+	 * 
+	 */
+	private BigDecimal preBlack;
+
+	/**
+	 * 
+	 */
+	private BigDecimal postRed;
+
+	/**
+	 * 
+	 */
+	private BigDecimal preRed;
 }
