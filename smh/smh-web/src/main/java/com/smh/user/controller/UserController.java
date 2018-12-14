@@ -7,7 +7,7 @@
  * @version : V1.0
  */
 
-package com.user.controller;
+package com.smh.user.controller;
 
 
 import io.swagger.annotations.Api;

@@ -1,13 +1,14 @@
 /**
- * @Title UserTaskController.java
- * @Package com.usertask.controller
+ * @Title teamController.java
+ * @Package com.team.controller
  * @Description 
  * @author zhouyuhang
- * @date 2018-12-12 16:37:05
+ * @date 2018-12-12 16:38:09
  * @version : V1.0
  */
 
-package com.usertask.controller;
+package com.smh.team.controller;
+
 
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -16,16 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
- * @ClassName UserTaskController
+ * @ClassName teamController
  * @Description Service
  * @author zhouyuhang
- * @date 2018-12-12 16:37:05
+ * @date 2018-12-12 16:38:09
  */
 @Slf4j
-@Api(tags = "用户任务controller")
+@Api(tags = "团队controller")
 @Controller
-@RequestMapping("/userTask")
-public class UserTaskController {
+@RequestMapping("/team")
+public class TeamController {
+
 
 
 }
