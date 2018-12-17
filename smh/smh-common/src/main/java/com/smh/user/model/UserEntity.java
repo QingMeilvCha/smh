@@ -9,7 +9,9 @@
 
 package com.smh.user.model;
 
+import com.smh.utils.ValidationUtil;
 import lombok.Data;
+import org.apache.poi.util.StringUtil;
 
 /**
  * @ClassName UserEntity
@@ -46,6 +48,9 @@ public class UserEntity {
 	 */
 	private Integer age;
 
+	private String password;
+
+	private String confirmPassword;
 	/**
 	 * 
 	 */
@@ -55,4 +60,25 @@ public class UserEntity {
 	 * 
 	 */
 	private String phoneNumber;
+
+	public void CheckUserEntityParam() throws Exception {
+		if(userName.trim()==null){
+			throw new Exception("用户名不能为空！");
+		}
+		if(password.trim()==null){
+			throw new Exception("密码不能为空！");
+		}
+		if(!ValidationUtil.checkPhone(phoneNumber.trim())){
+			throw new Exception("手机号码格式不正确！");
+		}
+		if(!ValidationUtil.checkEmail(email.trim())){
+			throw new Exception("邮箱格式不正确！");
+		}
+		if(age<=0){
+			throw new Exception("年龄不科学！");
+		}
+		if(!confirmPassword.trim().equals(password.trim())){
+			throw new Exception("前后密码不一致！");
+		}
+	}
 }

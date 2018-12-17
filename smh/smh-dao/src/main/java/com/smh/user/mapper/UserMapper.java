@@ -23,13 +23,16 @@ import java.util.Map;
  */
 public interface UserMapper {
 
-    void insert(UserEntity taskDataEntity);
+    void insert(UserEntity userEntity);
 
-    void update(UserEntity taskDataEntity);
+    void update(UserEntity userEntity);
 
-    UserEntity selectEntity(Map<String, Object> param);
+    UserEntity selectEntity(UserEntity userEntity);
 
     void insertBatch(List<UserEntity> list);
 
     List<UserEntity> selectEntities(Map<String, Object> param);
+
+    UserEntity findUserEntityByUserName(String userName);
+    Integer selectCount(Map<String, Object> param);
 }

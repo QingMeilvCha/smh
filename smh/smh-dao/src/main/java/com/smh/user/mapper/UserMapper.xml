@@ -5,21 +5,22 @@
 <mapper namespace="com.smh.user.mapper.UserMapper">
 <!-- Begin Base Config -->
 	<sql id="fields" ><!-- ALl Fields -->
-		user_id, user_name, sex, age, email, phone_number, mark
+		user_id, user_name, password, sex, age, email, phone_number, mark
 	</sql>
 
 	<sql id="values">
-		#{userId},#{userName},#{sex},#{age},#{email},#{phoneNumber},#{mark}
+		#{userId},#{userName},#{password},#{sex},#{age},#{email},#{phoneNumber},#{mark}
 	</sql>
 
 	<sql id="foreachObj">
-		#{obj.userId},#{obj.userName},#{obj.sex},#{obj.age},#{obj.email},#{obj.phoneNumber},#{obj.mark}
+		#{obj.userId},#{obj.userName},#{obj.password},#{obj.sex},#{obj.age},#{obj.email},#{obj.phoneNumber},#{obj.mark}
 	</sql>
 
 	<sql id="sets"><!-- Set Fields -->
 		<trim  suffixOverrides="," >
 			<if test="userId != null">user_id = #{userId},</if>
 			<if test="userName != null">user_name = #{userName},</if>
+			<if test="password != null">password = #{password},</if>
 			<if test="sex != null">sex = #{sex},</if>
 			<if test="age != null">age = #{age},</if>
 			<if test="email != null">email = #{email},</if>
@@ -33,6 +34,7 @@
 		<trim prefix="where" prefixOverrides="and |or">
 	        <if test="userId != null"> and user_id = #{userId}</if>
 			<if test="userName != null"> and user_name = #{userName}</if>
+			<if test="password != null"> and password = #{password}</if>
 			<if test="sex != null"> and sex = #{sex}</if>
 			<if test="age != null"> and age = #{age}</if>
 			<if test="email != null"> and email = #{email}</if>
@@ -44,6 +46,7 @@
 		<trim  suffixOverrides="," >
 			<if test="userId != null">user_id,</if>
 			<if test="userName != null">user_name,</if>
+			<if test="password != null">password,</if>
 			<if test="sex != null">sex,</if>
 			<if test="age != null">age,</if>
 			<if test="email != null">email,</if>
@@ -56,6 +59,7 @@
 		<trim  suffixOverrides="," >
 			<if test="userId != null">#{userId},</if>
 			<if test="userName != null">#{userName},</if>
+			<if test="password != null">#{password},</if>
 			<if test="sex != null">#{sex},</if>
 			<if test="age != null">#{age},</if>
 			<if test="email != null">#{email},</if>
@@ -80,7 +84,7 @@
 	</update>
 
 	<!-- 获取记录Count数量 -->
-	<select id="selectPageCount" parameterType="Map" resultType="Integer">
+	<select id="selectCount" parameterType="Map" resultType="Integer">
 		select count(*) from user
 	</select>
 	<!-- 获取List<T>分页对象 -->
@@ -103,5 +107,9 @@
 				(<include refid="foreachObj"/>)
 			</foreach>
 	</insert>
-
+	<!--验证重复的用户名-->
+	<select id="findUserEntityByUserName" parameterType="Object" resultType="com.smh.user.model.UserEntity">
+		select <include refid="fields"/> from user
+		where user_name=#{userName}
+	</select>
 </mapper>
