@@ -61,6 +61,8 @@ public class UserEntity {
 	 */
 	private String phoneNumber;
 
+	private Integer mark;
+
 	public void CheckUserEntityParam() throws Exception {
 		if(userName.trim()==null){
 			throw new Exception("用户名不能为空！");
