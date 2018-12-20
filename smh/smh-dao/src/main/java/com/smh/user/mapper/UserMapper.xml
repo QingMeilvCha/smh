@@ -95,7 +95,7 @@
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->
 	<select id="selectEntity" parameterType="Object" resultType="com.smh.user.model.UserEntity">
-		select <include refid="fields"/> from user
+		select * from user
 		<include refid="conditions"/>
 	</select>
 

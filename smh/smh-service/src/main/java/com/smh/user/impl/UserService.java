@@ -6,6 +6,9 @@ import com.smh.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by dell on 2018/12/17.
  */
@@ -26,7 +29,12 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserEntity findUserEntityByUserNameAndPassword(UserEntity userEntity) {
-        return userMapper.selectEntity(userEntity);
+    public Map<String,Object> findUserEntityByUserNameAndPassword(UserEntity userEntity) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        UserEntity entity = userMapper.selectEntity(userEntity);
+        if(entity!=null){
+            map.put("body",entity);
+        }
+        return map;
     }
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,14 +66,15 @@ public class UserController {
 
     @ApiOperation("用户登录Controller")
     @PostMapping(value="/login")
-    public String userLogin(UserEntity userEntity){
+    public Map<String,Object> userLogin(UserEntity userEntity){
         //1、验证用户名和密码
-        UserEntity user = userService.findUserEntityByUserNameAndPassword(userEntity);
-        if(user!=null){
-            return "success";
+        Map<String, Object> vo = userService.findUserEntityByUserNameAndPassword(userEntity);
+        if(vo.get("body")!=null){
+            vo.put("msg","success");
         }else{
-            return "用户名或密码错误！";
+            vo.put("msg","用户名或密码错误！");
         }
+        return vo;
     }
 
     @ApiOperation("测试Controller")
