@@ -1,0 +1,6 @@
+com\smh\team\model\TeamEntity.class
+com\smh\userteam\model\UserTeamEntity.class
+com\smh\taskdata\model\TaskDataEntity.class
+com\smh\usertask\model\UserTaskEntity.class
+com\smh\user\model\UserEntity.class
+com\smh\teamtask\model\TeamTaskEntity.class

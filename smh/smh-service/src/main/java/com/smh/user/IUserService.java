@@ -14,5 +14,5 @@ public interface IUserService {
 
     void insertUserEntity(UserEntity userEntity);
 
-    Map<String,Object> findUserEntityByUserNameAndPassword(UserEntity userEntity);
+    UserEntity findUserEntityByUserNameAndPassword(UserEntity userEntity);
 }

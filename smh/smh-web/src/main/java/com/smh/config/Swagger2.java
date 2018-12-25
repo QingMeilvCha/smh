@@ -26,7 +26,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("毕设api文档")
+                .title("smh服务端api文档")
                 .description("毕设项目-测量助手服务端接口")
                 .termsOfServiceUrl("https://github.com/QingMeilvCha/smh")
                 .version("1.0")

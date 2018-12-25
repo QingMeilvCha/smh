@@ -29,12 +29,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Map<String,Object> findUserEntityByUserNameAndPassword(UserEntity userEntity) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        UserEntity entity = userMapper.selectEntity(userEntity);
-        if(entity!=null){
-            map.put("body",entity);
-        }
-        return map;
+    public UserEntity findUserEntityByUserNameAndPassword(UserEntity userEntity) {
+        return userMapper.selectEntity(userEntity);
     }
 }

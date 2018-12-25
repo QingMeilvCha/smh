@@ -10,14 +10,16 @@
 package com.smh.user.controller;
 
 
+import com.smh.response.AdusResponse;
+import com.smh.sys.SysConstants;
 import com.smh.user.IUserService;
 import com.smh.user.mapper.UserMapper;
 import com.smh.user.model.UserEntity;
+import com.smh.utils.RedisUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,38 +45,55 @@ public class UserController {
     private IUserService userService;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @ApiOperation("用户注册Controller")
     @PostMapping(value="/register")
-    public String userRegister(UserEntity userEntity){
+    public AdusResponse userRegister(UserEntity userEntity){
         //1、验证
         try {
             userEntity.CheckUserEntityParam();
         } catch (Exception e) {
-            return e.getMessage();
+            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,e.getMessage(),null);
         }
         //2、用户名是否存在
         UserEntity entity = userService.findUserByUserName(userEntity.getUserName());
         if(entity!=null){
-            return "用户名已存在！";
+            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"用户名已存在",null);
         }else{
         //3、插入数据
             userService.insertUserEntity(userEntity);
-            return "success";
+            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",null);
         }
     }
 
     @ApiOperation("用户登录Controller")
     @PostMapping(value="/login")
-    public Map<String,Object> userLogin(UserEntity userEntity){
-        //1、验证用户名和密码
-        Map<String, Object> vo = userService.findUserEntityByUserNameAndPassword(userEntity);
-        if(vo.get("body")!=null){
-            vo.put("msg","success");
+    public AdusResponse userLogin(UserEntity userEntity,HttpServletRequest request){
+
+
+        String token = request.getSession().getId();
+        UserEntity u = (UserEntity)redisUtils.get(token);
+        if(u!=null){
+            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",null);
         }else{
-            vo.put("msg","用户名或密码错误！");
+            UserEntity user = userService.findUserEntityByUserNameAndPassword(userEntity);
+            if(user!=null){
+                redisUtils.set(token,user,60*30);
+                return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",null);
+            }else{
+                return new AdusResponse(SysConstants.ResponseCode.FAIL,"用户名或密码错误",null);
+            }
         }
-        return vo;
+    }
+
+    @ApiOperation("用户注销Controller")
+    @GetMapping(value="/logout")
+    public AdusResponse logout(HttpServletRequest request){
+        String token = request.getSession().getId();
+        redisUtils.romoveValue(token);
+        return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"注销成功",null);
     }
 
     @ApiOperation("测试Controller")
@@ -84,5 +103,21 @@ public class UserController {
         param.put("userName","zhouyuhang");
         Integer integer = userMapper.selectCount(param);
         return integer+"";
+    }
+
+    @ApiOperation("测试redis插入数据 Controller")
+    @GetMapping(value="/redis")
+    public AdusResponse test1(UserEntity userEntity,HttpServletRequest request){
+        String token = request.getSession().getId();
+        redisUtils.set(token,userEntity,60*30);
+        return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",null);
+    }
+
+    @ApiOperation("测试redis查询数据 Controller")
+    @GetMapping(value="/redis2")
+    public AdusResponse test2(HttpServletRequest request){
+        String token = request.getSession().getId();
+        UserEntity userEntity = (UserEntity)redisUtils.get(token);
+        return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",userEntity);
     }
 }
