@@ -5,15 +5,15 @@
 <mapper namespace="com.smh.taskdata.mapper.TaskDataMapper">
 <!-- Begin Base Config -->
 	<sql id="fields" ><!-- ALl Fields -->
-		record_id, data_id, point_number, control_point, post_distance_up, post_distance, pre_distance_uo, pre_distance_bottm, distance_reduce, acc_distance, post_black, pre_black, post_red, pre_red, mark
+		record_id, data_id, point_number, control_point, post_distance_up, post_distance_bottm, post_distance, pre_distance_uo, pre_distance_bottm, pre_distance, distance_reduce, acc_distance, post_black, pre_black, post_red, pre_red, mark
 	</sql>
 
 	<sql id="values">
-		#{recordId},#{dataId},#{pointNumber},#{controlPoint},#{postDistanceUp},#{postDistance},#{preDistanceUo},#{preDistanceBottm},#{distanceReduce},#{accDistance},#{postBlack},#{preBlack},#{postRed},#{preRed},#{mark}
+		#{recordId},#{dataId},#{pointNumber},#{controlPoint},#{postDistanceUp},#{postDistanceBottm},#{postDistance},#{preDistanceUo},#{preDistanceBottm},#{preDistance},#{distanceReduce},#{accDistance},#{postBlack},#{preBlack},#{postRed},#{preRed},#{mark}
 	</sql>
 
 	<sql id="foreachObj">
-		#{obj.recordId},#{obj.dataId},#{obj.pointNumber},#{obj.controlPoint},#{obj.postDistanceUp},#{obj.postDistance},#{obj.preDistanceUo},#{obj.preDistanceBottm},#{obj.distanceReduce},#{obj.accDistance},#{obj.postBlack},#{obj.preBlack},#{obj.postRed},#{obj.preRed},#{obj.mark}
+		#{obj.recordId},#{obj.dataId},#{obj.pointNumber},#{obj.controlPoint},#{obj.postDistanceUp},#{obj.postDistanceBottm},#{obj.postDistance},#{obj.preDistanceUo},#{obj.preDistanceBottm},#{obj.preDistance},#{obj.distanceReduce},#{obj.accDistance},#{obj.postBlack},#{obj.preBlack},#{obj.postRed},#{obj.preRed},#{obj.mark}
 	</sql>
 
 	<sql id="sets"><!-- Set Fields -->
@@ -23,6 +23,7 @@
 			<if test="pointNumber != null">point_number = #{pointNumber},</if>
 			<if test="controlPoint != null">control_point = #{controlPoint},</if>
 			<if test="postDistanceUp != null">post_distance_up = #{postDistanceUp},</if>
+			<if test="postDistanceBottm != null">post_distance_bottm = #{postDistanceBottm},</if>
 			<if test="postDistance != null">post_distance = #{postDistance},</if>
 			<if test="preDistanceUo != null">pre_distance_uo = #{preDistanceUo},</if>
 			<if test="preDistanceBottm != null">pre_distance_bottm = #{preDistanceBottm},</if>
@@ -44,9 +45,11 @@
 			<if test="pointNumber != null"> and point_number = #{pointNumber}</if>
 			<if test="controlPoint != null"> and control_point = #{controlPoint}</if>
 			<if test="postDistanceUp != null"> and post_distance_up = #{postDistanceUp}</if>
+			<if test="postDistanceBottm != null"> and post_distance_bottm = #{postDistanceBottm}</if>
 			<if test="postDistance != null"> and post_distance = #{postDistance}</if>
 			<if test="preDistanceUo != null"> and pre_distance_uo = #{preDistanceUo}</if>
 			<if test="preDistanceBottm != null"> and pre_distance_bottm = #{preDistanceBottm}</if>
+			<if test="preDistance != null"> and pre_distance = #{preDistance}</if>
 			<if test="distanceReduce != null"> and distance_reduce = #{distanceReduce}</if>
 			<if test="accDistance != null"> and acc_distance = #{accDistance}</if>
 			<if test="postBlack != null"> and post_black = #{postBlack}</if>
@@ -63,9 +66,11 @@
 			<if test="pointNumber != null">point_number,</if>
 			<if test="controlPoint != null">control_point,</if>
 			<if test="postDistanceUp != null">post_distance_up,</if>
+			<if test="postDistanceBottm != null">post_distance_bottm,</if>
 			<if test="postDistance != null">post_distance,</if>
 			<if test="preDistanceUo != null">pre_distance_uo,</if>
 			<if test="preDistanceBottm != null">pre_distance_bottm,</if>
+			<if test="preDistance != null">pre_distance,</if>
 			<if test="distanceReduce != null">distance_reduce,</if>
 			<if test="accDistance != null">acc_distance,</if>
 			<if test="postBlack != null">post_black,</if>
@@ -83,9 +88,11 @@
 			<if test="pointNumber != null">#{pointNumber},</if>
 			<if test="controlPoint != null">#{controlPoint},</if>
 			<if test="postDistanceUp != null">#{postDistanceUp},</if>
+			<if test="postDistanceBottm != null">#{postDistanceBottm},</if>
 			<if test="postDistance != null">#{postDistance},</if>
 			<if test="preDistanceUo != null">#{preDistanceUo},</if>
 			<if test="preDistanceBottm != null">#{preDistanceBottm},</if>
+			<if test="preDistance != null">#{preDistance},</if>
 			<if test="distanceReduce != null">#{distanceReduce},</if>
 			<if test="accDistance != null">#{accDistance},</if>
 			<if test="postBlack != null">#{postBlack},</if>

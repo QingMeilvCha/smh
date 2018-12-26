@@ -41,7 +41,12 @@ public class UserTaskEntity {
 	/**
 	 * 
 	 */
-	private Integer dataId;
+	private String dataId;
+
+	/**
+	 *
+	 */
+	private String taskName;
 
 	/**
 	 * 

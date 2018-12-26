@@ -31,5 +31,4 @@ public interface TaskDataMapper{
 
     void insertBatch(List<TaskDataEntity> list);
 
-    List<TaskDataEntity> selectEntities(Map<String, Object> param);
 }

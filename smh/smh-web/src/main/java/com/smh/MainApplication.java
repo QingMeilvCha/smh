@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan("com.smh.user.mapper")
+@MapperScan("com.smh")
 @EnableCaching
 public class MainApplication {
     public static void main(String[] args) {

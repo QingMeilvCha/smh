@@ -5,15 +5,15 @@
 <mapper namespace="com.smh.usertask.mapper.UserTaskMapper">
 <!-- Begin Base Config -->
 	<sql id="fields" ><!-- ALl Fields -->
-		user_task_id, user_id, data_id, task_type, creat_time, mark
+		user_task_id, user_id, data_id, task_name, task_type, creat_time, mark
 	</sql>
 
 	<sql id="values">
-		#{userTaskId},#{userId},#{dataId},#{taskType},#{creatTime},#{mark}
+		#{userTaskId},#{userId},#{dataId},#{taskName},#{taskType},#{creatTime},#{mark}
 	</sql>
 
 	<sql id="foreachObj">
-		#{obj.userTaskId},#{obj.userId},#{obj.dataId},#{obj.taskType},#{obj.creatTime},#{obj.mark}
+		#{obj.userTaskId},#{obj.userId},#{obj.dataId},#{obj.taskName},#{obj.taskType},#{obj.creatTime},#{obj.mark}
 	</sql>
 
 	<sql id="sets"><!-- Set Fields -->
@@ -21,6 +21,7 @@
 			<if test="userTaskId != null">user_task_id = #{userTaskId},</if>
 			<if test="userId != null">user_id = #{userId},</if>
 			<if test="dataId != null">data_id = #{dataId},</if>
+			<if test="taskName != null">task_name = #{taskName},</if>
 			<if test="taskType != null">task_type = #{taskType},</if>
 			<if test="creatTime != null">creat_time = #{creatTime},</if>
 			<if test="mark != null">mark = #{mark},</if>
@@ -33,6 +34,7 @@
 	        <if test="userTaskId != null"> and user_task_id = #{userTaskId}</if>
 			<if test="userId != null"> and user_id = #{userId}</if>
 			<if test="dataId != null"> and data_id = #{dataId}</if>
+			<if test="taskName != null"> and task_name = #{taskName}</if>
 			<if test="taskType != null"> and task_type = #{taskType}</if>
 			<if test="creatTime != null"> and creat_time = #{creatTime}</if>
 			<if test="mark != null"> and mark = #{mark}</if>
@@ -43,6 +45,7 @@
 			<if test="userTaskId != null">user_task_id,</if>
 			<if test="userId != null">user_id,</if>
 			<if test="dataId != null">data_id,</if>
+			<if test="taskName != null">task_name,</if>
 			<if test="taskType != null">task_type,</if>
 			<if test="creatTime != null">creat_time,</if>
 			<if test="mark != null">mark,</if>
@@ -54,6 +57,7 @@
 			<if test="userTaskId != null">#{userTaskId},</if>
 			<if test="userId != null">#{userId},</if>
 			<if test="dataId != null">#{dataId},</if>
+			<if test="taskName != null">#{taskName},</if>
 			<if test="taskType != null">#{taskType},</if>
 			<if test="creatTime != null">#{creatTime},</if>
 			<if test="mark != null">#{mark},</if>

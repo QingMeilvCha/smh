@@ -56,7 +56,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry) {
-
+        //配置虚拟路径映射，"file:"一定要加，否则无效
+        resourceHandlerRegistry.addResourceHandler("/image/**").addResourceLocations("file:/C:/upload/");
     }
 
     @Override

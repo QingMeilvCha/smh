@@ -36,7 +36,7 @@ public class TaskDataEntity {
 	/**
 	 * 取user_task的id或者team_task的id
 	 */
-	private Integer dataId;
+	private String dataId;
 
 	/**
 	 * 
@@ -55,6 +55,11 @@ public class TaskDataEntity {
 	private BigDecimal postDistanceUp;
 
 	/**
+	 *
+	 */
+	private BigDecimal postDistanceBottm;
+
+	/**
 	 * 
 	 */
 	private BigDecimal postDistance;
@@ -63,6 +68,11 @@ public class TaskDataEntity {
 	 * 
 	 */
 	private BigDecimal preDistanceUo;
+
+	/**
+	 *
+	 */
+	private BigDecimal preDistance;
 
 	/**
 	 * 

@@ -16,6 +16,7 @@ import com.smh.user.IUserService;
 import com.smh.user.mapper.UserMapper;
 import com.smh.user.model.UserEntity;
 import com.smh.utils.RedisUtils;
+import com.smh.utils.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +49,8 @@ public class UserController {
     private UserMapper userMapper;
     @Autowired
     private RedisUtils redisUtils;
+    @Autowired
+    private TokenUtil tokenUtil;
 
     @ApiOperation("用户注册Controller")
     @PostMapping(value="/register")
@@ -72,8 +76,7 @@ public class UserController {
     @PostMapping(value="/login")
     public AdusResponse userLogin(UserEntity userEntity,HttpServletRequest request){
 
-
-        String token = request.getSession().getId();
+        String token = tokenUtil.getToken(request);
         UserEntity u = (UserEntity)redisUtils.get(token);
         if(u!=null){
             return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",null);
@@ -91,7 +94,7 @@ public class UserController {
     @ApiOperation("用户注销Controller")
     @GetMapping(value="/logout")
     public AdusResponse logout(HttpServletRequest request){
-        String token = request.getSession().getId();
+        String token = tokenUtil.getToken(request);
         redisUtils.romoveValue(token);
         return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"注销成功",null);
     }
@@ -108,7 +111,7 @@ public class UserController {
     @ApiOperation("测试redis插入数据 Controller")
     @GetMapping(value="/redis")
     public AdusResponse test1(UserEntity userEntity,HttpServletRequest request){
-        String token = request.getSession().getId();
+        String token = tokenUtil.getToken(request);
         redisUtils.set(token,userEntity,60*30);
         return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",null);
     }
@@ -116,8 +119,37 @@ public class UserController {
     @ApiOperation("测试redis查询数据 Controller")
     @GetMapping(value="/redis2")
     public AdusResponse test2(HttpServletRequest request){
-        String token = request.getSession().getId();
+        String token = tokenUtil.getToken(request);
         UserEntity userEntity = (UserEntity)redisUtils.get(token);
         return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",userEntity);
+    }
+
+    @ApiOperation("测试虚拟路劲配置")
+    @GetMapping(value="/testpath")
+    public AdusResponse testpath() throws IOException {
+
+       // 新建文件输入流并对它进行缓冲
+        FileInputStream input = new FileInputStream("/image/a1.jpg");
+        BufferedInputStream inBuff=new BufferedInputStream(input);
+
+        // 新建文件输出流并对它进行缓冲
+        FileOutputStream output = new FileOutputStream("/image/a1.jpg");
+        BufferedOutputStream outBuff=new BufferedOutputStream(output);
+
+        // 缓冲数组
+        byte[] b = new byte[1024 * 5];
+        int len;
+        while ((len =inBuff.read(b)) != -1) {
+            outBuff.write(b, 0, len);
+        }
+        // 刷新此缓冲的输出流
+        outBuff.flush();
+
+        //关闭流
+        inBuff.close();
+        outBuff.close();
+        output.close();
+        input.close();
+        return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",null);
     }
 }
