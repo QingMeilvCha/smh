@@ -9,9 +9,12 @@
 
 package com.smh.usertask.model;
 
+import com.smh.model.Entity;
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.sql.Date;
+
 
 /**
  * @ClassName UserTaskEntity
@@ -20,7 +23,7 @@ import java.util.Date;
  * @date 2018-12-12 16:37:05
  */
 @Data
-public class UserTaskEntity {
+public class UserTaskEntity implements Serializable, Entity {
 
 	/**
 	 * @Fields serialVersionUID
@@ -31,17 +34,28 @@ public class UserTaskEntity {
 	/**
 	 * 
 	 */
-	private Integer userTaskId;
+	private String userTaskId;
 
 	/**
 	 * 
 	 */
-	private Integer userId;
+	private String userId;
+
 
 	/**
 	 * 
 	 */
-	private String dataId;
+	private String pointDataId;
+
+	/**
+	 *
+	 */
+	private String lineDataId;
+
+	/**
+	 *
+	 */
+	private String resultId;
 
 	/**
 	 *
@@ -57,4 +71,6 @@ public class UserTaskEntity {
 	 * 
 	 */
 	private Date creatTime;
+
+	private Integer mark;
 }

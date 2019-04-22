@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smh.alresult.mapper.AlResultMapper">
+    <!-- Begin Base Config -->
+    <sql id="fields" ><!-- ALl Fields -->
+        al_result_id,pid,al,mark
+    </sql>
+
+    <sql id="values">
+        #{alResultId},#{pid},#{al},#{mark}
+    </sql>
+
+    <sql id="foreachObj">
+        #{obj.alResultId},#{obj.pid},#{obj.al},#{obj.mark}
+    </sql>
+
+
+    <sql id="insertFields"><!-- Fields to insert -->
+        <trim  suffixOverrides="," >
+            <if test="alResultId != null">al_result_id,</if>
+            <if test="pid != null">pid,</if>
+            <if test="al != null">al,</if>
+            <if test="mark != null">mark,</if>
+        </trim>
+    </sql>
+
+    <sql id="insertValues"><!-- Values to insert -->
+        <trim  suffixOverrides="," >
+            <if test="alResultId != null">#{alResultId},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="al != null">#{al},</if>
+            <if test="mark != null">#{mark},</if>
+        </trim>
+    </sql>
+
+    <!-- End Base Config -->
+
+    <!-- 新增 -->
+    <insert id="insert" parameterType="Object" >
+        insert into al_results (<include refid="insertFields"/>)
+        values(<include refid="insertValues"/>)
+    </insert>
+
+    <!-- 修改数据 -->
+    <!--<update id="update" parameterType="Object">-->
+    <!--update points set-->
+    <!--<include refid="sets"/>-->
+    <!--where id = #{id}-->
+    <!--</update>-->
+
+    <!-- 作废数据 -->
+    <update id="invalid" parameterType="Object">
+        update al_results set mark=-1
+        where id = #{id}
+    </update>
+
+    <!-- 获取List<T>对象 (查询条件明确，禁止conditions) -->
+    <!--<select id="selectMap" parameterType="Map" resultType="com.smh.shuizhun.model.LPointClass">-->
+    <!--select <include refid="fields"/> from points-->
+    <!--<include refid="conditions"/>-->
+    <!--order by id-->
+    <!--</select>-->
+
+    <!-- 获取记录Count数量 -->
+    <select id="selectPageCount" parameterType="Map" resultType="Integer">
+        select count(*) from al_results
+    </select>
+    <!-- 获取List<T>分页对象 -->
+    <select id="selectPageEntities" parameterType="Map" resultType="com.smh.shuizhun.model.ALResults">
+        select * from al_results
+        order by id desc limit #{pageBegin},#{pageSize}
+    </select>
+
+    <!--获取T对象 (查询条件明确，禁止conditions) -->
+    <select id="selectEntity" parameterType="Object" resultType="com.smh.shuizhun.model.ALResults">
+        select <include refid="fields"/> from al_results
+    </select>
+
+    <!-- 批量增加 -->
+    <insert id="insertBatch" parameterType="List" >
+        insert into al_results(<include refid="fields"/>)
+        values
+        <foreach collection="list" item="obj" index="index" separator=",">
+            (<include refid="foreachObj"/>)
+        </foreach>
+    </insert>
+
+</mapper>

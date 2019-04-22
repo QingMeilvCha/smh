@@ -9,8 +9,10 @@
 
 package com.smh.taskdata.model;
 
+import com.smh.model.Entity;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -20,7 +22,7 @@ import java.math.BigDecimal;
  * @date 2018-12-14 16:48:21
  */
 @Data
-public class TaskDataEntity {
+public class TaskDataEntity implements Serializable, Entity {
 
 	/**
 	 * @Fields serialVersionUID

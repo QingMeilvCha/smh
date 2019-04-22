@@ -5,46 +5,25 @@
 <mapper namespace="com.smh.usertask.mapper.UserTaskMapper">
 <!-- Begin Base Config -->
 	<sql id="fields" ><!-- ALl Fields -->
-		user_task_id, user_id, data_id, task_name, task_type, creat_time, mark
+		user_task_id,user_id, point_data_id, line_data_id, result_id,task_name, task_type, creat_time, mark
 	</sql>
 
 	<sql id="values">
-		#{userTaskId},#{userId},#{dataId},#{taskName},#{taskType},#{creatTime},#{mark}
+		#{userTaskId},#{userId},#{pointDataId},#{lineDataId},#{resultId},#{taskName},#{taskType},#{creatTime},#{mark}
 	</sql>
 
 	<sql id="foreachObj">
-		#{obj.userTaskId},#{obj.userId},#{obj.dataId},#{obj.taskName},#{obj.taskType},#{obj.creatTime},#{obj.mark}
+		#{obj.userTaskId},#{obj.userId},#{obj.pointDataId},#{obj.lineDataId},#{obj.resultId},#{obj.taskName},#{obj.taskType},#{obj.creatTime},#{obj.mark}
 	</sql>
 
-	<sql id="sets"><!-- Set Fields -->
-		<trim  suffixOverrides="," >
-			<if test="userTaskId != null">user_task_id = #{userTaskId},</if>
-			<if test="userId != null">user_id = #{userId},</if>
-			<if test="dataId != null">data_id = #{dataId},</if>
-			<if test="taskName != null">task_name = #{taskName},</if>
-			<if test="taskType != null">task_type = #{taskType},</if>
-			<if test="creatTime != null">creat_time = #{creatTime},</if>
-			<if test="mark != null">mark = #{mark},</if>
-		</trim>
-	</sql>
 
-	<!-- SQL查询条件明确，禁止conditions(便于索引) -->
-	<sql id="conditions"><!-- Search Condition -->
-		<trim prefix="where" prefixOverrides="and |or">
-	        <if test="userTaskId != null"> and user_task_id = #{userTaskId}</if>
-			<if test="userId != null"> and user_id = #{userId}</if>
-			<if test="dataId != null"> and data_id = #{dataId}</if>
-			<if test="taskName != null"> and task_name = #{taskName}</if>
-			<if test="taskType != null"> and task_type = #{taskType}</if>
-			<if test="creatTime != null"> and creat_time = #{creatTime}</if>
-			<if test="mark != null"> and mark = #{mark}</if>
-	    </trim>
-	</sql>
 	<sql id="insertFields"><!-- Fields to insert -->
 		<trim  suffixOverrides="," >
 			<if test="userTaskId != null">user_task_id,</if>
 			<if test="userId != null">user_id,</if>
-			<if test="dataId != null">data_id,</if>
+			<if test="pointDataId != null">point_data_id,</if>
+			<if test="lineDataId != null">line_data_id,</if>
+			<if test="resultId != null">result_id,</if>
 			<if test="taskName != null">task_name,</if>
 			<if test="taskType != null">task_type,</if>
 			<if test="creatTime != null">creat_time,</if>
@@ -56,7 +35,9 @@
 		<trim  suffixOverrides="," >
 			<if test="userTaskId != null">#{userTaskId},</if>
 			<if test="userId != null">#{userId},</if>
-			<if test="dataId != null">#{dataId},</if>
+			<if test="pointDataId != null">#{pointDataId},</if>
+			<if test="lineDataId != null">#{lineDataId},</if>
+			<if test="resultId != null">#{resultId},</if>
 			<if test="taskName != null">#{taskName},</if>
 			<if test="taskType != null">#{taskType},</if>
 			<if test="creatTime != null">#{creatTime},</if>
@@ -73,27 +54,27 @@
 	</insert>
 
 	<!-- 修改数据 -->
-	<update id="update" parameterType="Object">
-		update user_task set
-		<include refid="sets"/>
-		where id = #{id}
-	</update>
+	<!--<update id="update" parameterType="Object">-->
+		<!--update user_task set-->
+		<!--<include refid="sets"/>-->
+		<!--where id = #{id}-->
+	<!--</update>-->
 
 	<!-- 获取记录Count数量 -->
 	<select id="selectPageCount" parameterType="Map" resultType="Integer">
 		select count(*) from user_task
 	</select>
 	<!-- 获取List<T>分页对象 -->
-	<select id="selectEntities" parameterType="Map" resultType="com.smh.usertask.model.UserTaskEntity">
-		select <include refid="fields"/> from user_task
-		<include refid="conditions"/>
-	</select>
+	<!--<select id="selectEntities" parameterType="Map" resultType="com.smh.usertask.model.UserTaskEntity">-->
+		<!--select <include refid="fields"/> from user_task-->
+		<!--<include refid="conditions"/>-->
+	<!--</select>-->
 
 	<!--获取T对象 (查询条件明确，禁止conditions) -->
-	<select id="selectEntity" parameterType="Object" resultType="com.smh.usertask.model.UserTaskEntity">
-		select <include refid="fields"/> from user_task
-		<include refid="conditions"/>
-	</select>
+	<!--<select id="selectEntity" parameterType="Object" resultType="com.smh.usertask.model.UserTaskEntity">-->
+		<!--select <include refid="fields"/> from user_task-->
+		<!--<include refid="conditions"/>-->
+	<!--</select>-->
 
 	<!-- 批量增加 -->
 	<insert id="insertBatch" parameterType="List" >
@@ -104,4 +85,9 @@
 			</foreach>
 	</insert>
 
+	<!-- 获取List<T>分页对象 -->
+	<select id="selectTasksByType" parameterType="Object" resultType="com.smh.usertask.model.UserTaskEntity">
+		select <include refid="fields"/> from user_task
+		where task_type=#{taskType}
+	</select>
 </mapper>

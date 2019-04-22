@@ -75,16 +75,16 @@ public class UserController {
     @ApiOperation("用户登录Controller")
     @PostMapping(value="/login")
     public AdusResponse userLogin(UserEntity userEntity,HttpServletRequest request){
-
         String token = tokenUtil.getToken(request);
-        UserEntity u = (UserEntity)redisUtils.get(token);
-        if(u!=null){
-            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",null);
+        UserEntity user;
+        user = (UserEntity)redisUtils.get(token);
+        if(user!=null){
+            return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",user);
         }else{
-            UserEntity user = userService.findUserEntityByUserNameAndPassword(userEntity);
+            user = userService.findUserEntityByUserNameAndPassword(userEntity);
             if(user!=null){
                 redisUtils.set(token,user,60*30);
-                return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",null);
+                return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"登录成功",user);
             }else{
                 return new AdusResponse(SysConstants.ResponseCode.FAIL,"用户名或密码错误",null);
             }
@@ -102,10 +102,8 @@ public class UserController {
     @ApiOperation("测试Controller")
     @GetMapping(value="/test")
     public String test(){
-        Map<String,Object> param=new HashMap<String,Object>();
-        param.put("userName","zhouyuhang");
-        Integer integer = userMapper.selectCount(param);
-        return integer+"";
+
+        return "success";
     }
 
     @ApiOperation("测试redis插入数据 Controller")
@@ -152,4 +150,6 @@ public class UserController {
         input.close();
         return new AdusResponse(SysConstants.ResponseCode.SUCCESS,"success",null);
     }
+
+
 }

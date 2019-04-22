@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class CalculateResult {
     public String calculateID;
-    public List<HVResults> HVResults;
-    public List<ALResults> ALResults;
+    public List<com.smh.shuizhun.model.HVResults> HVResults;
+    public List<com.smh.shuizhun.model.ALResults> ALResults;
     public double derta;//单位权中误差
 }

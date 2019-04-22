@@ -32,4 +32,6 @@ public interface UserTaskMapper {
     void insertBatch(List<UserTaskEntity> list);
 
     List<UserTaskEntity> selectEntities(Map<String, Object> param);
+
+    List<UserTaskEntity> selectTasksByType(String taskType);
 }

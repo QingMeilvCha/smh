@@ -1,5 +1,7 @@
 package com.smh.shuizhun;
 
+import com.smh.shuizhun.model.LPointClass;
+import com.smh.shuizhun.model.LineClass;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -36,25 +38,25 @@ public class AdjustLevel {
         List<LPointClass> TPoints = new ArrayList<LPointClass>();
         for (LPointClass Tp : CurrentPoints)
         {
-            if (Tp.isIsControlP() == false)
+            if (Tp.isControlP() == false)
                 TPoints.add(Tp);
         }
         //k相当于观测边号
         for (int k = 0; k < n; k++)
         {
             //i，j为待定点参数的序号
-            int i = Belong(TPoints, CurrentSegments.get(k).getSP().getPID());
-            int j = Belong(TPoints, CurrentSegments.get(k).getEP().getPID());
+            int i = Belong(TPoints, CurrentSegments.get(k).getSPid().getPid());
+            int j = Belong(TPoints, CurrentSegments.get(k).getEPid().getPid());
             temp = 1.0 / CurrentSegments.get(k).getDistance();//权值
             P.SetNum(k, k, temp);
             //终点观测高程-终点近似高程
-            temp = CurrentSegments.get(k).getSP().getH() + CurrentSegments.get(k).getDH() - CurrentSegments.get(k).getEP().getH();
+            temp = CurrentSegments.get(k).getSPid().getH() + CurrentSegments.get(k).getDh() - CurrentSegments.get(k).getEPid().getH();
             //改正数以mm为单位
             temp = temp * 1000;
             l.SetNum(k, 0, temp);//常数项设值
-            if (CurrentSegments.get(k).getSP().isIsControlP() == false)
+            if (CurrentSegments.get(k).getSPid().isControlP() == false)
                 B.SetNum(k, i, -1);//观测边起点系数为-1
-            if (CurrentSegments.get(k).getEP().isIsControlP() == false)
+            if (CurrentSegments.get(k).getEPid().isControlP() == false)
                 B.SetNum(k, j, 1);//观测边终点系数为+1
         }
 
@@ -66,7 +68,7 @@ public class AdjustLevel {
         for (LPointClass TP : CurrentPoints)
         {
 
-            if (TP.isIsControlP() == false)
+            if (TP.isControlP() == false)
             {
                 TP.setH(TP.getH() + x.getNum(kk, 0) / 1000);
                 kk++;
@@ -80,7 +82,7 @@ public class AdjustLevel {
     private static int Belong(List<LPointClass> CurrentPoints, String s)
     {
         for (LPointClass TPoint:CurrentPoints) {
-            if (TPoint.getPID() == s)
+            if (TPoint.getPid() .equals(s))
                 return CurrentPoints.indexOf(TPoint);
         }
         return -1;

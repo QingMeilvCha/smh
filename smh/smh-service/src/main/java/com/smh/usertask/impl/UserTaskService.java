@@ -1,6 +1,12 @@
 package com.smh.usertask.impl;
 
+import com.smh.alresult.mapper.AlResultMapper;
 import com.smh.dataprocess.ShuiZhunTools;
+import com.smh.hvresult.mapper.HvResultMapper;
+import com.smh.line.mapper.LineClassMapper;
+import com.smh.point.mapper.LPointClassMapper;
+import com.smh.result.mapper.ResultMapper;
+import com.smh.shuizhun.model.*;
 import com.smh.sys.SysConstants;
 import com.smh.taskdata.mapper.TaskDataMapper;
 import com.smh.taskdata.model.TaskDataEntity;
@@ -27,29 +33,74 @@ public class UserTaskService implements IUserTaskService{
     private TaskDataMapper taskDataMapper;
     @Autowired
     private ShuiZhunTools shuiZhunTools;
-
-    @Override
-    public void doUserTask(List<TaskDataEntity> taskDataEntities, UserEntity userEntity){
-        //1、数据处理
-        List<TaskDataEntity> list = shuiZhunTools.shuiZhunCeZhan(taskDataEntities);
-        //2、插入数据表
-        //a 生成data_id
-        String dataId = UUID.randomUUID().toString();
-        Integer userId = userEntity.getUserId();
-
-        UserTaskEntity userTaskEntity=new UserTaskEntity();
-        userTaskEntity.setUserId(userId);
-        userTaskEntity.setDataId(dataId);
-        userTaskEntity.setTaskType(SysConstants.SmType.SHUIZHUN);
-        //插入user_task表
-        //插入task_data表
-        insertUserTaskAndTaskData(userTaskEntity,list);
-    }
+    @Autowired
+    private LPointClassMapper pointClassMapper;
+    @Autowired
+    private LineClassMapper lineClassMapper;
+    @Autowired
+    private HvResultMapper hvResultMapper;
+    @Autowired
+    private AlResultMapper alResultMapper;
+    @Autowired
+    private ResultMapper resultMapper;
 
     @Transactional
-    public void insertUserTaskAndTaskData(UserTaskEntity userTaskEntity,List<TaskDataEntity> list){
-        userTaskMapper.insert(userTaskEntity);
-        taskDataMapper.insertBatch(list);
+    @Override
+    public void doUserTask(UserTaskEntity userTaskEntity, List<LPointClass> CurrentPoints, String pointDataId, List<LineClass> CurrentSegments, String linrDataId, Results results, String resultId, List<HVResults> hvResults, String hvResultId, List<ALResults> alResults, String alResultId) {
+        insert(userTaskEntity);
+        insertBatchPoints(CurrentPoints,pointDataId);
+        insertBatchLines(CurrentSegments,linrDataId);
+        insertResult(results,resultId);
+        insertBatchHvResult(hvResults,hvResultId);
+        insertBatchAlResult(alResults,alResultId);
     }
 
+
+    @Override
+    public List<UserTaskEntity> getTaskByType(String taskType) {
+        return userTaskMapper.selectTasksByType(taskType);
+    }
+
+    @Override
+    public void insert(UserTaskEntity userTaskEntity) {
+        userTaskMapper.insert(userTaskEntity);
+    }
+
+    @Override
+    public void insertBatchPoints(List<LPointClass> lPointClasses,String id) {
+        lPointClasses.forEach(e->{
+            e.setPointDataId(id);
+        });
+        pointClassMapper.insertBatch(lPointClasses);
+    }
+
+    @Override
+    public void insertBatchLines(List<LineClass> lineClasses,String id) {
+        lineClasses.forEach(e -> {
+            e.setLineDataId(id);
+        });
+        lineClassMapper.insertBatch(lineClasses);
+    }
+
+    @Override
+    public void insertBatchHvResult(List<HVResults> hvResults,String id) {
+        hvResults.forEach(e->{
+            e.setHvResultId(id);
+        });
+        hvResultMapper.insertBatch(hvResults);
+    }
+
+    @Override
+    public void insertBatchAlResult(List<ALResults> alResults,String id){
+        alResults.forEach(e -> {
+            e.setAlResultId(id);
+        });
+        alResultMapper.insertBatch(alResults);
+    }
+
+    @Override
+    public void insertResult(Results result,String id) {
+        result.setResultId(id);
+        resultMapper.insert(result);
+    }
 }

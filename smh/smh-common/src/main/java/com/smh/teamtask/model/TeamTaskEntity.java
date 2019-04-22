@@ -9,9 +9,11 @@
 
 package com.smh.teamtask.model;
 
+import com.smh.model.Entity;
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * @ClassName TeamTaskEntity
@@ -20,7 +22,7 @@ import java.util.Date;
  * @date 2018-12-12 16:36:46
  */
 @Data
-public class TeamTaskEntity {
+public class TeamTaskEntity implements Serializable, Entity {
 
 	/**
 	 * @Fields serialVersionUID

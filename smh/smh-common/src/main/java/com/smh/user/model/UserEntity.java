@@ -9,9 +9,12 @@
 
 package com.smh.user.model;
 
+import com.smh.model.Entity;
 import com.smh.utils.ValidationUtil;
 import lombok.Data;
 import org.apache.poi.util.StringUtil;
+
+import java.io.Serializable;
 
 /**
  * @ClassName UserEntity
@@ -20,7 +23,7 @@ import org.apache.poi.util.StringUtil;
  * @date 2018-12-12 16:28:51
  */
 @Data
-public class UserEntity {
+public class UserEntity implements Serializable, Entity {
 
 	/**
 	 * @Fields serialVersionUID
