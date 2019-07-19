@@ -69,9 +69,15 @@
 	</insert>
 
 	<!-- 修改数据 -->
-	<update id="update" parameterType="Object">
+	<!--<update id="update" parameterType="Object">-->
+		<!--update team set-->
+		<!--<include refid="sets"/>-->
+		<!--where id = #{id}-->
+	<!--</update>-->
+
+	<update id="update">
 		update team set
-		<include refid="sets"/>
+		mark = mark + #{one}
 		where id = #{id}
 	</update>
 

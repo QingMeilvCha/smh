@@ -2,6 +2,7 @@ package com.smh.config;
 
 import com.smh.interceptor.MainInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -22,7 +23,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private MainInterceptor mainInterceptor;
-
+    @Value("${application.filter.open}")
+    private boolean open;
     @Override
     public void configurePathMatch(PathMatchConfigurer pathMatchConfigurer) {
 
@@ -50,8 +52,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-        interceptorRegistry.addInterceptor(mainInterceptor).addPathPatterns("/**")
-                           .excludePathPatterns("/user/login","/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+        if(open){
+            interceptorRegistry.addInterceptor(mainInterceptor).addPathPatterns("/**")
+                    .excludePathPatterns("/user/login","/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+        }
     }
 
     @Override
